@@ -1,3 +1,7 @@
+'use client'
+
+import { PrimaryBtn } from '../shared/components/atoms/PrimaryBtn'
+
 export default function Home() {
   return (
     <div className="relative">
@@ -17,9 +21,7 @@ export default function Home() {
           <h1 className="text-7xl logo">スケジュール管理APP</h1>
           <p className="pt-[10vh] text-5xl">お互いのスケジュールを管理するアプリです</p>
           <div className="pt-[20vh]">
-            <button className="bg-lime-800 text-white p-4 text-lg rounded-lg">
-              ログイン
-            </button>
+            <PrimaryBtn onClick={()=> null}>ログイン</PrimaryBtn>
           </div>
         </div>
       </main>
