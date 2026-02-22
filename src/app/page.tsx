@@ -1,6 +1,12 @@
+'use client'
+
+import Link from 'next/link' 
+import { useRouter } from 'next/navigation'
 import { PrimaryBtn } from '@/shared/components/atoms/PrimaryBtn'
 
 export default function Home() {
+  const router = useRouter()
+
   return (
     <div className="relative">
       <header className="bg-white leading-12.5 fixed top-0 left-0 right-0">
@@ -9,7 +15,9 @@ export default function Home() {
           <nav>
             <ul className="flex gap-5 text-lime-800">
               <li>ご利用方法</li>
-              <li>ログイン</li>
+              <li>
+                <Link href="/login">ログイン</Link>
+              </li>
             </ul>
           </nav>
         </div>
@@ -19,10 +27,10 @@ export default function Home() {
           <h1 className="text-7xl logo">スケジュール管理APP</h1>
           <p className="pt-[10vh] text-5xl">お互いのスケジュールを管理するアプリです</p>
           <div className="pt-[20vh]">
-            <PrimaryBtn>ログイン</PrimaryBtn>
+            <PrimaryBtn onClick={() => router.push('/login')}>ログイン</PrimaryBtn>
           </div>
         </div>
-      </main>
+      </main> 
     </div>
   )
 }
