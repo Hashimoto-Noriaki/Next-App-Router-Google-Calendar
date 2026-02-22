@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link' 
 import { useRouter } from 'next/navigation'
 import { PrimaryBtn } from '@/shared/components/atoms/PrimaryBtn'
 
@@ -14,7 +15,9 @@ export default function Home() {
           <nav>
             <ul className="flex gap-5 text-lime-800">
               <li>ご利用方法</li>
-              <li>ログイン</li>
+              <li>
+                <Link href="/login">ログイン</Link>
+              </li>
             </ul>
           </nav>
         </div>
