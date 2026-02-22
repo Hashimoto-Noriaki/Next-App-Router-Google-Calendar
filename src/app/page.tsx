@@ -27,7 +27,7 @@ export default function Home() {
             <PrimaryBtn onClick={() => router.push('/login')}>ログイン</PrimaryBtn>
           </div>
         </div>
-      </main>
+      </main> 
     </div>
   )
 }
