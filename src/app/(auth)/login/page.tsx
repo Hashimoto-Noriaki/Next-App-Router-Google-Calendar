@@ -4,11 +4,11 @@ import { useState } from "react"
 import { useRouter } from 'next/navigation'
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Input } from "@/shared/components/atoms/Input"
-import { PrimaryBtn } from "@/shared/components/atoms/PrimaryBtn"
-import { loginSchema, type LoginFormData } from "@/features/auth/schemas/loginSchema"
-import { login } from "@/features/auth/api/login"
-import { useLoginUser } from "@/features/auth/hooks/useLoginUser"
+import { Input } from "@/shared/components/atoms"
+import { PrimaryBtn } from "@/shared/components/atoms"
+import { loginSchema, type LoginFormData } from "@/features/auth"
+import { login } from "@/features/auth"
+import { useLoginUser } from "@/features/auth"
 
 export default function LoginPage() {
     const router = useRouter()
