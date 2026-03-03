@@ -1,10 +1,22 @@
 'use client'
 
-import { getMonth } from 'date-fns'
+import { eachDayOfInterval,eachWeekOfInterval,endOfMonth,endOfWeek,getDate,getMonth,startOfMonth } from 'date-fns'
 import { DAYS_LIST } from '@/constants/calendar'
 
 export default function CalendarPage() {
     const today = new Date()
+
+    const monthOfSundayList = eachWeekOfInterval({
+        start:startOfMonth(today),
+        end:endOfMonth(today),
+    })
+
+    const dateList: Date[][] = monthOfSundayList.map((date)=> {
+        return eachDayOfInterval({
+            start:date,
+            end:endOfWeek(date),
+        })
+    })
 
     return (
         <>
@@ -21,6 +33,22 @@ export default function CalendarPage() {
                         ))}
                     </tr>
                 </thead>
+                <tbody>
+                    {dateList.map((oneWeek)=> (
+                        <tr key={`week-${getDate(oneWeek[0])}`} className="mx-10">
+                            {oneWeek.map((item)=> (
+                                <td
+                                    key={`day-${getDate(item)}`}
+                                    className="bg-white h-[10vh] border-2 border-solid border-lime-800"
+                                >
+                                    <span className="inline-block w-5 leading-5 text-center">
+                                        {getDate(item)}
+                                    </span>
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
             </table>
         </>
     )
