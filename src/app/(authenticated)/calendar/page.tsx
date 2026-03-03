@@ -1,13 +1,27 @@
 'use client'
 
-import { useLoginUser } from '@/features/auth/hooks/useLoginUser'
+import { getMonth } from 'date-fns'
+import { DAYS_LIST } from '@/constants/calendar'
 
 export default function CalendarPage() {
-    const { loginUser } = useLoginUser()
+    const today = new Date()
+
     return (
-        <div>
-            <p>ID: {loginUser.id}</p>
-            <p>名前: {loginUser.name}</p>
-        </div>
+        <>
+            <h1 className="font-bold text-3xl mb-5">
+                {`${getMonth(today)+ 1}月`}
+            </h1>
+            <table className="w-[80%] border-collapse border-2 border-solid border-lime-800 tabled-fixed">
+                <thead>
+                    <tr className="bg-lime-800 text-white rounded-tr-lg rounded-tl-lg py-10">
+                        {DAYS_LIST.map((day)=> (
+                            <th key={day} className="font-bold text-3xl py-5">
+                                {day}
+                            </th>
+                        ))}
+                    </tr>
+                </thead>
+            </table>
+        </>
     )
 }
