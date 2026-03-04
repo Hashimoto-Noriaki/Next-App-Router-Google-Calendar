@@ -1,7 +1,8 @@
 'use client'
 
-import { eachDayOfInterval,eachWeekOfInterval,endOfMonth,endOfWeek,getDate,getMonth,isSameMonth,isToday,startOfMonth } from 'date-fns'
-import { DAYS_LIST } from '@/constants/calendar'
+import { eachDayOfInterval,eachWeekOfInterval,endOfMonth,endOfWeek,getMonth,startOfMonth } from 'date-fns'
+import { CalendarBody } from '@/shared/components/organisms/CalendarBody'
+import { CalendarHeader } from '@/shared/components/organisms/CalendarHeader'
 
 export default function CalendarPage() {
     const today = new Date()
@@ -18,42 +19,14 @@ export default function CalendarPage() {
         })
     })
 
-    const dateColor = (targetDate: Date, currentDate: Date): string => {
-        if(isToday(targetDate)) return "bg-lime-800 text-white rounded-full"
-        return isSameMonth(targetDate,currentDate) ? "text-black" : "text-gray-300"
-    }
-
     return (
         <>
             <h1 className="font-bold text-3xl mb-5">
                 {`${getMonth(today)+ 1}月`}
             </h1>
             <table className="w-[80%] border-collapse border-2 border-solid border-lime-800 tabled-fixed">
-                <thead>
-                    <tr className="bg-lime-800 text-white rounded-tr-lg rounded-tl-lg py-10">
-                        {DAYS_LIST.map((day)=> (
-                            <th key={day} className="font-bold text-3xl py-5">
-                                {day}
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    {dateList.map((oneWeek)=> (
-                        <tr key={`week-${getDate(oneWeek[0])}`} className="mx-10">
-                            {oneWeek.map((item)=> (
-                                <td
-                                    key={`day-${getDate(item)}`}
-                                    className="bg-white h-[10vh] border-2 border-solid border-lime-800"
-                                >
-                                    <span className={`inline-block w-5 leading-5 text-center ${dateColor(item,today)}`}>
-                                        {getDate(item)}
-                                    </span>
-                                </td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
+                <CalendarHeader/>
+                <CalendarBody currentDate={today} dateList={dateList}/>
             </table>
         </>
     )
