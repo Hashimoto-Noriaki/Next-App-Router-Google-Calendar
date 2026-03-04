@@ -1,6 +1,6 @@
 'use client'
 
-import { eachDayOfInterval,eachWeekOfInterval,endOfMonth,endOfWeek,getDate,getMonth,startOfMonth } from 'date-fns'
+import { eachDayOfInterval,eachWeekOfInterval,endOfMonth,endOfWeek,getDate,getMonth,isSameMonth,isToday,startOfMonth } from 'date-fns'
 import { DAYS_LIST } from '@/constants/calendar'
 
 export default function CalendarPage() {
@@ -17,6 +17,11 @@ export default function CalendarPage() {
             end:endOfWeek(date),
         })
     })
+
+    const dateColor = (targetDate: Date, currentDate: Date): string => {
+        if(isToday(targetDate)) return "bg-lime-800 text-white rounded-full"
+        return isSameMonth(targetDate,currentDate) ? "text-black" : "text-gray-300"
+    }
 
     return (
         <>
@@ -41,7 +46,7 @@ export default function CalendarPage() {
                                     key={`day-${getDate(item)}`}
                                     className="bg-white h-[10vh] border-2 border-solid border-lime-800"
                                 >
-                                    <span className="inline-block w-5 leading-5 text-center">
+                                    <span className={`inline-block w-5 leading-5 text-center ${dateColor(item,today)}`}>
                                         {getDate(item)}
                                     </span>
                                 </td>
